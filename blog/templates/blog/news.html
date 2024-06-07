@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tin tức</title>
+
+
+    <!-- link font awesome cdn trên trang web cdnjs.com -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <!-- bắt đầu section header -->
+
+    <header class="header">
+
+        <section class="flex">
+
+            <a href="{% url 'index' %}" class="logo"><img src="{% static 'img/logo.png' %}"
+                    alt=""><span>Summer</span><br><span>Camp</span></a>
+
+
+            <div class="sidebar">
+                <nav class="navbar">
+                    <a href="{% url 'index' %}"><span>Trang chủ</span></a>
+                    <a href="{% url 'courses' %}"><span>Đăng ký học</span></a>
+                    <a href="{% url 'news' %}" class="active"><span>Tin tức</span></a>
+                    <a href="{% url 'feedback' %}"><span>Phản hồi</span></a>
+                </nav>
+            </div>
+
+            <form method="GET" action="{% url 'news' %}" class="search-form">
+                <input type="text" name="q" placeholder="Tìm kiếm bài viết..." value="{{ query }}">
+                <button type="submit" class="fas fa-search" name="search_box"></button>
+            </form>
+
+            <div class="icons">
+                <div id="menu-btn" class="fas fa-bars"></div>
+                <div id="search-btn" class="fas fa-search"></div>
+
+            </div>
+
+
+        </section>
+
+    </header>
+    <!-- kết thúc section header -->
+
+    <!-- bắt đầu section tin tức -->
+
+    <h1 style="color: white;"><strong>Tin tức</strong></h1>
+    <ul>
+        {% for post in posts %}
+        <li>
+            <br>
+            <div class="search-box-container" style="  background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    padding: 16px; ">
+
+
+                <div>
+                    <img src="img/html.png" alt="">
+                    <a href="{% url 'post_detail' post.pk %}" >{{ post.title }}</a>
+                    <br>
+                    By {{post.author}} on {{post.created_at}}
+                </div>
+
+        </li>
+        {% endfor %}
+    </ul>
+
+    <!-- kết thúc section tin tức -->
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

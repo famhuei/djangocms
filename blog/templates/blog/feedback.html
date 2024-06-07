@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang phản hồi</title>
+
+
+    <!-- link font awesome cdn trên trang web cdnjs.com -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <!-- bắt đầu section header -->
+    
+    <header class="header">
+
+        <section class="flex">
+
+            <a href="{% url 'index' %}" class="logo"><img src="{% static 'img/logo.png' %}" alt=""><span>Summer</span><br><span>Camp</span></a>
+            
+
+            <div class="sidebar">
+                <nav class="navbar">
+                    <a href="{% url 'index' %}"><span>Trang chủ</span></a>
+                    <a href="{% url 'courses' %}"><span>Đăng ký học</span></a>
+                    <a href="{% url 'news' %}"><span>Tin tức</span></a>
+                    <a href="{% url 'feedback' %}" class="active"><span>Phản hồi</span></a>
+                </nav>
+            </div>
+
+            <form action="" method="post" class="search-form">
+                <input type="text" name="search-box" placeholder="Tìm kiếm khóa học..." required maxlength="100">
+                <button type="submit" class="fas fa-search" name="search_box"></button>
+            </form>
+
+            <div class="icons">
+                <div id="menu-btn" class="fas fa-bars"></div>
+                <div id="search-btn" class="fas fa-search"></div>
+              </div>
+            
+
+        </section>
+
+    </header>
+    <!-- kết thúc section header -->
+
+    <!-- bắt đầu section phản hồi -->
+
+        <section class="feedback">
+            <div class="box">
+                <h2>Hãy đánh giá chúng tôi tại đây</h2>
+              
+             
+                <form method="post" style="color: white;">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="inline-btn">Submit Feedback</button>
+                </form>
+            
+                <!-- Feedback List -->
+                <h2>Feedbacks:</h2>
+                <ul style="color: white">
+                    {% for feedback in feedbacks %}
+                        <li>
+                            <strong>{{ feedback.author }}</strong>: {{ feedback.body }} ({{ feedback.created_at }})
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+       
+        
+    <script src="js/main.js"></script>
+</body>
+</html>
+
+    
+
+        

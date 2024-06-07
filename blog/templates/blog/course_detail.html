@@ -1,0 +1,75 @@
+<!-- blog/templates/blog/post_detail.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <title>{{ course.title }}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header class="header">
+
+        <section class="flex">
+
+            <a href="{% url 'index' %}" class="logo"><img src="{% static 'img/logo.png' %}"
+                    alt=""><span>Summer</span><br><span>Camp</span></a>
+
+
+            <div class="sidebar">
+                <nav class="navbar">
+                    <a href="{% url 'index' %}"><span>Trang chủ</span></a>
+                    <a href="{% url 'courses' %}" class="active"><span>Đăng ký học</span></a>
+                    <a href="{% url 'news' %}"><span>Tin tức</span></a>
+                    <a href="{% url 'feedback' %}"><span>Phản hồi</span></a>
+                </nav>
+            </div>
+
+            <form action="" method="post" class="search-form">
+                <input type="text" name="search-box" placeholder="Tìm kiếm khóa học..." required maxlength="100">
+                <button type="submit" class="fas fa-search" name="search_box"></button>
+            </form>
+
+            <div class="icons">
+                <div id="menu-btn" class="fas fa-bars"></div>
+                <div id="search-btn" class="fas fa-search"></div>
+
+            </div>
+
+
+        </section>
+
+    </header>
+
+    <!-- Main Section -->
+    <section class="intro">
+        <div class="row">
+            <div class="content">
+                <h1 class="heading" style="color : white">{{ course.title }}</h1>
+                <div class="search-box-container" style="  background-color: #fff;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+                padding: 16px; ">
+                    <p class="intro">{{ course.content|safe }}</p>
+                    <div>
+                        <p style="color: black;">Số lượng: {{ course.capacity }}
+                        <br>Số sinh viên đã đăng ký: {{ registered_students_count }}</p>
+                    </div>
+                    <p style="color : black">By <span>{{ course.author }}</span> on {{ course.created_at }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="more-btn">
+            <a href="{% url 'register' %}" class="inline-option-btn">Đăng ký ngay</a>
+            <a href="{% url 'courses' %}" class="inline-option-btn">Quay lại</a>
+        </div>
+    </section>
+
+
+
+
+</body>
+
+</html>

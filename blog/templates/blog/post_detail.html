@@ -1,0 +1,87 @@
+<!-- blog/templates/blog/post_detail.html -->
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ post.title }}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+
+        <section class="flex">
+
+            <a href="{% url 'index' %}" class="logo"><img src="{% static 'img/logo.png' %}" alt=""><span>Summer</span><br><span>Camp</span></a>
+            
+
+            <div class="sidebar">
+                <nav class="navbar">
+                    <a href="{% url 'index' %}"><span>Trang chủ</span></a>
+                     <a href="{% url 'courses' %}"><span>Đăng ký học</span></a>
+                    <a href="{% url 'news' %}" class="active"><span>Tin tức</span></a>
+                    <a href="{% url 'feedback' %}" ><span>Phản hồi</span></a>
+                </nav>
+            </div>
+
+            <form action="" method="post" class="search-form">
+                <input type="text" name="search-box" placeholder="Tìm kiếm khóa học..." required maxlength="100">
+                <button type="submit" class="fas fa-search" name="search_box"></button>
+            </form>
+
+            <div class="icons">
+                <div id="menu-btn" class="fas fa-bars"></div>
+                <div id="search-btn" class="fas fa-search"></div>
+   
+            </div>
+            
+
+        </section>
+
+    </header>
+
+    <!-- Main Section -->
+    <section class="intro">
+        <div class="row">
+            <div class="content">
+                <h1 class="heading" style="color : white">{{ post.title }}</h1>
+                <div class="search-box-container" style=" color:black;border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); padding: 16px;">
+                   
+                <div class="infor">
+                    <p class="intro">{{ post.content|safe }}</p>
+                    <p>By <span>{{ post.author }}</span> on {{ post.created_at }}</p>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comments Section -->
+    <section class="feedback">
+        <div class="box-container" style="margin-left: 300px;">
+            <div class="box">
+                <h2>Comments</h2>
+                <ul style="color:white">
+                    {% for comment in comments %}
+                        <li>
+                            <strong>{{ comment.author }}</strong>: {{ comment.body }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comment Form Section -->
+    <section class="box" style="position: relative;">
+        <h2>Leave a Comment</h2>
+        <form method="post" action="{% url 'post_detail' post.pk %}"style="color: white;">
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            <button type="submit" class="inline-btn">Post Comment</button>
+        </form>
+    
+   
+    </section>
+</body>
+</html>

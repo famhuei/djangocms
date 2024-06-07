@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USC || Trang chủ</title>
+
+    <!-- link font awesome cdn trên trang web cdnjs.com -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <!-- bắt đầu section header -->
+    
+    <header class="header">
+
+        <section class="flex">
+
+            <a href="#" class="logo"><img src="{% static 'img/logo.png' %}" alt=""><span>Summer</span><br><span>Camp</span></a>
+            
+
+            <div class="sidebar">
+                <nav class="navbar">
+                    <a href="{% url 'index' %}"class="active"><span>Trang chủ</span></a>
+                    <a href="{% url 'courses' %}"><span>Đăng ký học</span></a>
+                    <a href="{% url 'news' %}"><span>Tin tức</span></a>
+                    <a href="{% url 'feedback' %}" ><span>Phản hồi</span></a>
+                </nav>
+            </div>
+
+            <form method="GET" action="{% url 'news' %}" class="search-form">
+                <input type="text" name="q" placeholder="Tìm kiếm bài viết..." value="{{ query }}">
+                <button type="submit" class="fas fa-search" name="search_box"></button>
+
+            <div class="icons">
+                <div id="menu-btn" class="fas fa-bars"></div>
+                <div id="search-btn" class="fas fa-search"></div>
+            </div>
+
+        </section>
+
+    </header>
+
+    <!-- kết thúc section header -->
+
+    <!-- bắt đầu section giới thiệu -->
+
+        <section class="intro">
+            <div class="row">
+
+                <div class="image">
+                    <img src="{% static 'img/logo-outline.png' %}" alt="">
+                </div>
+
+                <div class="content" style="color:white">
+                    <h3>Lý do bạn nên chọn khóa học hè của UET Summer Camp</h3>
+                    <p><strong>🌟 Chất lượng đào tạo hàng đầu: </strong>UET là trường đại học uy tín về công nghệ thông tin. Khóa học hè của UET do các giảng viên có kinh nghiệm thiết kế, đảm bảo bạn học kiến thức mới nhất và thực tế.
+
+                         <br><strong>🚀 Cơ hội nâng cao kỹ năng: </strong>Không chỉ học chuyên ngành, bạn còn phát triển kỹ năng mềm và mở rộng mạng lưới xã hội.
+                        
+                        <br><strong>🌈 Chương trình đa dạng: </strong>UET tổ chức nhiều khóa học về lập trình, thiết kế đồ họa, khoa học dữ liệu và trí tuệ nhân tạo.
+                        
+                        <br>Hãy tham gia để trải nghiệm môi trường học tập chất lượng và phát triển bản thân! 😊🌞</p>
+                    <a href="{% url 'courses' %}" class="inline-btn">Danh sách khóa học</a>
+                </div>
+
+            </div>
+        </section>
+
+    <!-- kết thúc section giới thiệu -->
+
+    <!-- bắt đầu section thông báo -->
+
+        <section class="notify">
+
+            <h1 class="heading"></h1>
+
+            <div class="box-container">
+
+                <h1 class="title">Trường Đại học Công nghệ mở lớp đào tạo chuyên sâu AI cho các sinh viên Hà Nội</h1>
+                <p class="content">
+                    Trường Đại học Công nghệ (University of Engineering and Technology - VNU) chính thức thông báo mở lớp đào tạo chuyên sâu về Trí Tuệ Nhân Tạo (AI) dành cho sinh viên toàn thành phố Hà Nội. Đây là cơ hội học tập và nâng cao kiến thức vô cùng quý báu cho các bạn yêu thích lĩnh vực công nghệ thông tin và muốn phát triển sự nghiệp trong lĩnh vực AI.
+                    
+                </p>
+
+                
+            </div>
+
+        </section>
+
+    <!-- kết thúc section thông báo -->
+
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
